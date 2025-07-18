@@ -1,3 +1,4 @@
+WORKING DIRECTORY v0.10
 # Osiris Blockchain (`osiris-core`)
 
 **Opis:** Modularny blockchain napisany w C++20, wspierający różne algorytmy konsensusu (PoW, PoS, PoA, PBFT, Tendermint), zaawansowaną kryptografię, monitorowanie Prometheus, API i systemy społeczne.
