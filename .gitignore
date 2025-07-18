@@ -1,0 +1,86 @@
+# Generalne pliki ignorowane przez Git
+.DS_Store
+.vscode/ # Ustawienia VS Code, jeśli nie są współdzielone w zespole
+.idea/ # Ustawienia JetBrains IDEs (CLion, IntelliJ IDEA)
+*.swp
+*.swo
+*~
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Build artifacts (artefakty budowania)
+# Katalog budowania CMake
+/build/
+/build_* # np. build_windows, build_macos itp.
+
+# Pliki generowane przez CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+*.cbp # Code::Blocks project files
+*.depend # Dependency files
+*.o # Object files
+*.d # Dependency files
+*.gcno
+*.gcda
+*.gcov
+*.exe # Windows executables
+*.dll # Windows dynamic libraries
+*.lib # Windows static libraries
+*.so # Linux shared libraries
+*.dylib # macOS dynamic libraries
+*.a # Static libraries (jeśli nie są to biblioteki, które chcesz commitować, np. zewnętrzne)
+
+# Pliki wykonywalne projektu (te, które pojawiają się w głównym katalogu, a nie powinny)
+/osiris-core
+/osiris-node
+/osiris-cli-executable # Jeśli generowane bezpośrednio w głównym katalogu
+
+# Zewnętrzne zależności skompilowane (jeśli są pobierane i budowane jako _deps)
+/_deps/
+
+# Pliki konfiguracyjne specyficzne dla środowiska
+.env # Pliki zmiennych środowiskowych (np. dla Docker Compose)
+config.yaml # Jeśli to jest tymczasowy plik generowany przez testy lub lokalny
+config.tests.yaml # Jeśli to jest tymczasowy plik generowany przez testy
+
+# Katalogi z danymi (bazy danych blockchaina)
+/data/
+
+# Pliki logów
+*.log
+progress.txt # Jak widać w Twoim ls -a
+
+# Pliki tymczasowe skryptów/narzędzi
+build_out.txt
+cml.txt
+tree.txt
+tree.md # Jeśli jest generowany, a nie ręcznie utrzymywany
+
+# Pliki z monitoringu (bazy danych, logi grafany itp.)
+/monitoring/grafana/grafana.db
+/monitoring/grafana/csv/
+/monitoring/grafana/pdf/
+/monitoring/grafana/plugins/ # Jeśli to są pobierane pluginy, a nie kod źródłowy
+/monitoring/png/ # Jeśli to są generowane obrazki
+
+# Pliki z NFT (jeśli są to generowane prototypy lub tymczasowe)
+/nft/simpl-impl/
+/nft/single-audio-dev1000x/
+
+# Pliki backupowe CMakeLists.txt
+CMakeLists-back.txt
+
+# Skrypty uruchomieniowe, które mogą być lokalne
+# runai.js
+# run_debug.sh
+# run_tests.sh
+# tests.sh
+# Jeśli te skrypty są specyficzne dla Twojego środowiska i nie są częścią repozytorium
