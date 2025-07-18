@@ -1,0 +1,30 @@
+# Ignore compiled assets, temp files, and media drafts
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.ogg
+*.zip
+*.rar
+
+# AI-generated previews
+output/*
+temp/*
+cache/*
+logs/
+*.tmp
+
+# Local dev and config files
+.env
+.idea/
+.vscode/
+.DS_Store
+
+# Build artifacts (optional)
+dist/
+build/
+node_modules/
+
+# AI prompt logs
+prompts/
+prompt-logs/

@@ -1,0 +1,126 @@
+.
+├── bin
+├── build
+├── build.sh
+├── CMakeCache.txt
+├── CMakeFiles
+│   ├── 3.25.1
+│   ├── cmake.check_cache
+│   ├── CMakeDirectoryInformation.cmake
+│   ├── CMakeOutput.log
+│   ├── Makefile2
+│   ├── Makefile.cmake
+│   ├── osiris-config.dir
+│   ├── osiris-core.dir
+│   ├── osiris-node.dir
+│   ├── pkgRedirects
+│   ├── progress.marks
+│   └── TargetDirectories.txt
+├── cmake_install.cmake
+├── CMakeLists-back.txt
+├── CMakeLists.txt
+├── config
+│   ├── dev.yaml
+│   ├── mainnet.yaml
+│   ├── node1.yaml
+│   ├── node2.yaml
+│   └── node3.yaml
+├── config.tests.yaml
+├── config.yaml
+├── contracts
+│   └── vote.kontrakt
+├── CTestTestfile.cmake
+├── data
+│   ├── dev
+│   ├── node1
+│   ├── node2
+│   └── node3
+├── _deps
+│   ├── cryptopp-build
+│   ├── cryptopp-src
+│   ├── cryptopp-subbuild
+│   ├── googletest-build
+│   ├── googletest-src
+│   ├── googletest-subbuild
+│   ├── httplib
+│   ├── httplib-build
+│   ├── httplib-src
+│   ├── httplib-subbuild
+│   ├── json-build
+│   ├── json-src
+│   ├── json-subbuild
+│   ├── prometheus-cpp-build
+│   ├── prometheus-cpp-src
+│   └── prometheus-cpp-subbuild
+├── docker-compose.yml
+├── Dockerfile
+├── include
+│   └── osiris
+├── lib
+│   ├── libgmock.a
+│   ├── libgmock_main.a
+│   ├── libgtest.a
+│   └── libgtest_main.a
+├── libosiris-core.a
+├── Makefile
+├── monitoring
+│   ├── grafana
+│   └── prometheus.yml
+├── nft
+│   ├── simpl-impl
+│   └── single-audio-dev1000x
+├── osiris-core
+├── osiris_core_design.md
+├── osiris-node
+├── progress.txt
+├── src
+│   ├── chain.cpp
+│   ├── chain.hpp
+│   ├── CMakeLists.txt
+│   ├── config.cpp
+│   ├── config.hpp
+│   ├── consensus
+│   ├── contract
+│   ├── crypto
+│   ├── main.cpp
+│   ├── main_executable.cpp
+│   ├── metrics_server
+│   ├── modules
+│   ├── monitoring
+│   ├── network
+│   ├── node
+│   ├── seth
+│   ├── status
+│   ├── storage
+│   └── types.hpp
+├── Taskfile.yml
+├── tests
+│   ├── chain_tests.cpp
+│   ├── CMakeFiles
+│   ├── cmake_install.cmake
+│   ├── CMakeLists.txt
+│   ├── config_tests.cpp
+│   ├── consensus_scenarios.test
+│   ├── consensus_tests.cpp
+│   ├── cons.txt
+│   ├── contract_tests.cpp
+│   ├── CTestTestfile.cmake
+│   ├── dummy_node_factory.cpp
+│   ├── dummy_node_factory.hpp
+│   ├── main_test.cpp
+│   ├── Makefile
+│   ├── metrics_tests.cpp
+│   ├── MockHttpClient.hpp
+│   ├── network_tests.cpp
+│   ├── osiris-tests
+│   ├── osiris-tests[1]_include.cmake
+│   ├── osiris-tests[1]_tests.cmake
+│   ├── status_test.cpp
+│   ├── status_tests.cpp
+│   ├── storage_tests.cpp
+│   └── tree.md
+├── tests.sh
+├── tree.md
+└── tree.txt
+
+55 directories, 69 files

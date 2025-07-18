@@ -1,0 +1,74 @@
+contract Voting {
+    name: "Democratic Voting System"
+    owner: "0x1234567890abcdef1234567890abcdef12345678"
+    gas_limit: 5000000
+    
+    storage proposal_count: uint256 = 0;
+    storage total_votes: uint256 = 0;
+    storage is_active: bool = true;
+    
+    event ProposalCreated(uint256 proposal_id, string description);
+    event VoteCast(address voter, uint256 proposal_id, bool vote);
+    event VotingClosed();
+    
+    function createProposal(string description) -> uint256 {
+        require(is_active == true, "Voting is not active");
+        require(msg.sender == owner, "Only owner can create proposals");
+        
+        proposal_count = proposal_count + 1;
+        
+        // Store proposal
+        storage_set("proposal_" + proposal_count, description);
+        storage_set("votes_yes_" + proposal_count, 0);
+        storage_set("votes_no_" + proposal_count, 0);
+        
+        emit ProposalCreated(proposal_count, description);
+        return proposal_count;
+    }
+    
+    function vote(uint256 proposal_id, bool vote_yes) {
+        require(is_active == true, "Voting is not active");
+        require(proposal_id > 0 && proposal_id <= proposal_count, "Invalid proposal");
+        require(storage_get("voted_" + msg.sender + "_" + proposal_id) == "", "Already voted");
+        
+        // Record vote
+        storage_set("voted_" + msg.sender + "_" + proposal_id, "true");
+        
+        if (vote_yes) {
+            uint256 current_yes = storage_get_uint("votes_yes_" + proposal_id);
+            storage_set("votes_yes_" + proposal_id, current_yes + 1);
+        } else {
+            uint256 current_no = storage_get_uint("votes_no_" + proposal_id);
+            storage_set("votes_no_" + proposal_id, current_no + 1);
+        }
+        
+        total_votes = total_votes + 1;
+        emit VoteCast(msg.sender, proposal_id, vote_yes);
+    }
+    
+    function getProposal(uint256 proposal_id) -> string {
+        require(proposal_id > 0 && proposal_id <= proposal_count, "Invalid proposal");
+        return storage_get("proposal_" + proposal_id);
+    }
+    
+    function getVoteCount(uint256 proposal_id) -> (uint256, uint256) {
+        require(proposal_id > 0 && proposal_id <= proposal_count, "Invalid proposal");
+        
+        uint256 yes_votes = storage_get_uint("votes_yes_" + proposal_id);
+        uint256 no_votes = storage_get_uint("votes_no_" + proposal_id);
+        
+        return (yes_votes, no_votes);
+    }
+    
+    function closeVoting() {
+        require(msg.sender == owner, "Only owner can close voting");
+        require(is_active == true, "Voting already closed");
+        
+        is_active = false;
+        emit VotingClosed();
+    }
+    
+    function getTotalStats() -> (uint256, uint256, bool) {
+        return (proposal_count, total_votes, is_active);
+    }
+}

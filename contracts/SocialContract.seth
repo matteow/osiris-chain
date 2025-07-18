@@ -1,0 +1,81 @@
+// SocialContract.seth - Placeholder Seth Smart Contract for Social Data
+
+// Define data structures for social entities
+struct Post {
+    uint64 id;
+    address author;
+    string content;
+    uint64 timestamp;
+}
+
+struct Comment {
+    uint64 id;
+    uint64 postId;
+    address author;
+    string content;
+    uint64 timestamp;
+}
+
+struct Like {
+    uint64 postId;
+    address author;
+}
+
+struct Identity {
+    address walletAddress;
+    string username;
+    string bio;
+}
+
+// Mappings to store social data
+mapping(uint64 => Post) public posts;
+mapping(uint64 => Comment) public comments;
+mapping(uint64 => mapping(address => bool)) public likes; // postId => author => liked
+mapping(address => Identity) public identities;
+
+// Events for logging and external consumption
+event PostCreated(uint64 id, address author, string content);
+event CommentCreated(uint64 id, uint64 postId, address author, string content);
+event Liked(uint64 postId, address author);
+event IdentityCreated(address walletAddress, string username);
+
+// Functions to interact with the social data
+function createPost(uint64 id, string content) public returns (bool) {
+    // In a real contract, 'id' would likely be generated or validated on-chain
+    // 'author' would be msg.sender
+    posts[id] = Post({id: id, author: msg.sender, content: content, timestamp: block.timestamp});
+    emit PostCreated(id, msg.sender, content);
+    return true;
+}
+
+function createComment(uint64 id, uint64 postId, string content) public returns (bool) {
+    // 'author' would be msg.sender
+    comments[id] = Comment({id: id, postId: postId, author: msg.sender, content: content, timestamp: block.timestamp});
+    emit CommentCreated(id, postId, msg.sender, content);
+    return true;
+}
+
+function likePost(uint64 postId) public returns (bool) {
+    require(!likes[postId][msg.sender], "Already liked this post");
+    likes[postId][msg.sender] = true;
+    emit Liked(postId, msg.sender);
+    return true;
+}
+
+function createIdentity(string username, string bio) public returns (bool) {
+    require(identities[msg.sender].walletAddress == address(0), "Identity already exists");
+    identities[msg.sender] = Identity({walletAddress: msg.sender, username: username, bio: bio});
+    emit IdentityCreated(msg.sender, username);
+    return true;
+}
+
+// Basic getters (more complex queries would require iteration or external indexing)
+function getPost(uint64 id) public view returns (uint64, address, string, uint64) {
+    Post storage p = posts[id];
+    return (p.id, p.author, p.content, p.timestamp);
+}
+
+function getIdentity(address walletAddress) public view returns (address, string, string) {
+    Identity storage i = identities[walletAddress];
+    return (i.walletAddress, i.username, i.bio);
+}

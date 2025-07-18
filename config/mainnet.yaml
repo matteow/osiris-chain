@@ -1,0 +1,29 @@
+network:
+  listen_address: "127.0.0.1"
+  listen_port: 30333
+  p2p_port: 30333
+  rpc_port: 8545
+  bootstrap_nodes: []
+  max_peers: 100
+
+consensus:
+  type: "pos"
+  pos:
+    min_stake: 100.0
+
+storage:
+  type: "lmdb"
+  path: "/var/lib/osiris-mainnet"
+  cache_size_mb: 1024
+
+metrics:
+  listen_address: "127.0.0.1"
+  listen_port: 9090
+
+
+
+contracts:
+  engine: "wasm3"
+  max_contract_size: 2097152
+
+

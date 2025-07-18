@@ -1,0 +1,41 @@
+network:
+  name: "osiris-dev"
+  listen_address: "127.0.0.1"
+  listen_port: 30333
+  p2p_port: 30333
+  rpc_port: 8545
+  bootstrap_nodes: []
+  max_peers: 10
+  block_time_ms: 1000
+  maxBlockSizeBytes: 1048576
+
+consensus:
+  name: "PoA"
+  type: "PoA"
+  validators:
+    - "0x1111111111111111111111111111111111111111"
+    - "0x2222222222222222222222222222222222222222"
+  pow:
+    difficulty: 1
+  pos:
+    min_stake: 100.0
+
+storage:
+  type: "leveldb"
+  path: "./test_db"
+  cache_size_mb: 64
+
+metrics:
+  listen_address: "127.0.0.1"
+  listen_port: 9090
+
+contracts:
+  path: "/etc/osiris-core/contracts"
+  engine: "wasm3"
+  gas_limit: 20000000
+  max_contract_size: 2097152
+
+logging:
+  level: "debug"
+  file: "/var/lib/osiris/osiris-dev.log"
+  max_size_mb: 50

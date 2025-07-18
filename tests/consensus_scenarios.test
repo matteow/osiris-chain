@@ -1,0 +1,54 @@
+# This file is not a C++ test, but a scenario definition file.
+# It would be used by a test runner script.
+
+- consensus: PoW
+  nodes: 5
+  blocks: 100
+
+- consensus: PoS
+  nodes: 5
+  blocks: 100
+
+- consensus: DPoS
+  nodes: 5
+  blocks: 100
+
+- consensus: PBFT
+  nodes: 5
+  blocks: 100
+
+- consensus: Raft
+  nodes: 5
+  blocks: 100
+
+- consensus: PoA
+  nodes: 5
+  blocks: 100
+
+- consensus: PoET
+  nodes: 5
+  blocks: 100
+
+- consensus: PoH
+  nodes: 5
+  blocks: 100
+
+- consensus: PoSpace
+  nodes: 5
+  blocks: 100
+
+- consensus: FBA
+  nodes: 5
+  blocks: 100
+
+- consensus: PoWeight
+  nodes: 5
+  blocks: 100
+
+- consensus: PoRep
+  nodes: 5
+  blocks: 100
+
+- consensus: Custom
+  nodes: 5
+  blocks: 100

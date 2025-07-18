@@ -1,0 +1,32 @@
+network:
+  name: "osiris-testnet"
+  consensus: "PoA"
+  validators:
+    - "0x1111111111111111111111111111111111111111"
+    - "0x2222222222222222222222222222222222222222"
+  block_time_ms: 3000
+  max_block_size: 1048576
+
+storage:
+  type: "leveldb"
+  path: "/var/lib/osiris"
+  cache_size_mb: 128
+
+networking:
+  p2p_port: 30333
+  rpc_port: 8545
+  bootstrap:
+    - "osiris-node-2:30333"
+    - "osiris-node-3:30333"
+  max_peers: 50
+
+contracts:
+  path: "/etc/osiris-core/contracts"
+  engine: "wasm3"
+  gas_limit: 10000000
+  max_contract_size: 1048576
+
+logging:
+  level: "info"
+  file: "/var/lib/osiris/osiris.log"
+  max_size_mb: 100

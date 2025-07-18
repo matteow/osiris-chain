@@ -1,0 +1,5 @@
+if(EXISTS "/home/mttw/Desktop/dev/osiris_chaind/project/osiris-core/tests/osiris-tests[1]_tests.cmake")
+  include("/home/mttw/Desktop/dev/osiris_chaind/project/osiris-core/tests/osiris-tests[1]_tests.cmake")
+else()
+  add_test(osiris-tests_NOT_BUILT osiris-tests_NOT_BUILT)
+endif()

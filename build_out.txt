@@ -1,0 +1,15 @@
+-- Found Boost: /usr/local/lib/cmake/Boost-1.88.0/BoostConfig.cmake (found suitable version "1.88.0", minimum required is "1.88") found components: system thread 
+-- Found Boost: /usr/local/lib/cmake/Boost-1.88.0/BoostConfig.cmake (found suitable version "1.88.0", minimum required is "1.75.0") found components: system thread 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mttw/Desktop/dev/osiris_chaind/project/osiris-core/build
+[  4%] Built target httplib
+[ 12%] Built target osiris-core
+[ 14%] Building CXX object src/modules/social/CMakeFiles/social.dir/storage.cpp.o
+[ 21%] Built target osiris-contract
+[ 34%] Built target osiris-seth
+[ 63%] Built target osiris-consensus
+[ 63%] Built target osiris-storage
+[ 68%] Built target osiris-metrics-server
+[ 75%] Built target osiris-identity
+[ 80%] Built target osiris-network

@@ -1,0 +1,138 @@
+version: '3.8'
+
+services:
+  #################################################################
+  # Runtime nodes                                                  #
+  #################################################################
+  osiris-node-1:
+    build:
+      context: .
+      target: runtime
+    container_name: osiris-node-1
+    ports:
+      - "30333:30333"
+      - "9100:9090" # Map host port 9100 to container metrics port 9090
+      - "8545:8545"
+    volumes:
+      - "./data/node1:/var/lib/osiris"
+      - "./config/node1.yaml:/etc/osiris-core/config.yaml:ro"
+    environment:
+      - NODE_ID=1
+      - CLIENT_RELEASE=1
+    networks:
+      - osiris-network
+    restart: unless-stopped
+
+  osiris-node-2:
+    build:
+      context: .
+      target: runtime
+    container_name: osiris-node-2
+    ports:
+      - "30334:30333"
+      - "8546:8545"
+    volumes:
+      - "./data/node2:/var/lib/osiris"
+      - "./config/node2.yaml:/etc/osiris-core/config.yaml:ro"
+    environment:
+      - NODE_ID=2
+      - CLIENT_RELEASE=1
+    depends_on:
+      - osiris-node-1
+    networks:
+      - osiris-network
+    restart: unless-stopped
+
+  osiris-node-3:
+    build:
+      context: .
+      target: runtime
+    container_name: osiris-node-3
+    ports:
+      - "30335:30333"
+      - "8547:8545"
+    volumes:
+      - "./data/node3:/var/lib/osiris"
+      - "./config/node3.yaml:/etc/osiris-core/config.yaml:ro"
+    environment:
+      - NODE_ID=3
+      - CLIENT_RELEASE=1
+    depends_on:
+      - osiris-node-1
+      - osiris-node-2
+    networks:
+      - osiris-network
+    restart: unless-stopped
+
+  #################################################################
+  # Development node                                               #
+  #################################################################
+  osiris-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+      args:
+        BUILD_TYPE: Debug
+    container_name: osiris-dev
+    ports:
+      - "30336:30333"
+      - "8548:8545"
+    volumes:
+      - "./data/dev:/var/lib/osiris"
+      - "./config/dev.yaml:/etc/osiris-core/config.yaml:ro"
+      - "./contracts:/etc/osiris-core/contracts:ro"
+    environment:
+      - NODE_ID=dev
+      - DEV_DEBUG=1
+    networks:
+      - osiris-network
+    restart: unless-stopped
+    command: ["/usr/local/bin/run_tests.sh"]
+
+  #################################################################
+  # Prometheus exporter & monitoring                                #
+  #################################################################
+  
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: osiris-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+    networks:
+      - osiris-network
+    restart: unless-stopped
+    depends_on:
+      - osiris-node-1
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: osiris-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./monitoring/grafana:/var/lib/grafana"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - osiris-network
+    restart: unless-stopped
+    depends_on:
+      - osiris-node-1
+
+networks:
+  osiris-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+
+volumes:
+  node1-data:
+  node2-data:
+  node3-data:
+  dev-data:
+  grafana-data:

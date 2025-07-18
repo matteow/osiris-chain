@@ -1,0 +1,16 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - mkdir -p build
+      - cd build && cmake .. && make -j$(nproc)
+    silent: true
+
+  test:
+    cmds:
+      - cd build && ctest --output-on-failure
+
+  run:
+    cmds:
+      - ./build/osiris-node

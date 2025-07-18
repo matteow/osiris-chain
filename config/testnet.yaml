@@ -1,0 +1,37 @@
+network:
+  name: "osiris-testnet"
+  consensus: "PoS"
+  validators: []
+  block_time_ms: 3000
+  max_block_size: 1048576
+  listen_address: "127.0.0.1"
+  listen_port: 30334
+  p2p_port: 30334
+  rpc_port: 8546
+  bootstrap: []
+  max_peers: 50
+
+consensus:
+  type: "PoS"
+  pos:
+    min_stake: 100.0
+
+storage:
+  type: "lmdb"
+  path: "/var/lib/osiris-testnet"
+  cache_size_mb: 512
+
+metrics:
+  listen_address: "127.0.0.1"
+  listen_port: 9090
+
+contracts:
+  path: "/etc/osiris-core/contracts"
+  engine: "wasm3"
+  gas_limit: 10000000
+  max_contract_size: 1048576
+
+logging:
+  level: "info"
+  file: "/var/log/osiris/testnet.log"
+  max_size_mb: 100
